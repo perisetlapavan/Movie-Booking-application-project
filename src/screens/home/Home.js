@@ -276,7 +276,7 @@ class Home extends React.Component {
 
     render() {
         return <div>
-            <Header />
+            <Header extra="false" />
             <span style={{display:'block' , backgroundColor:'#ff9999', padding:'8px' ,textAlign:'center' , font:'1 rem'}}>Upcoming Movies</span>
             <TitlebarImageList />
             {/* <Filter filter={this.filterMovies} onDataChange={this.dataChange} />

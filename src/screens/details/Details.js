@@ -1,36 +1,59 @@
-// import {moviesData} from '../assets/moviesData';
-import * as React from 'react';
+import React from 'react';
+import Header from '../../common/header/Header';
+import Typography from '@mui/material/Typography';
+import { style } from '@mui/system';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-// import ListSubheader from '@mui/material/ListSubheader';
 import IconButton from '@mui/material/IconButton';
-// import { render } from '@testing-library/react';
-// import InfoIcon from '@mui/icons-material/Info';
-// import * as React from 'react';
-// import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-// import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Select from '@mui/material/Select'; 
-// import { genres } from '../assets/genre';
-// import { artists } from '../assets/artists';
-import { moviesData } from '../assets/moviesData';
-// import Checkbox from '@mui/material/Checkbox';
-import { Link } from 'react-router-dom';
+import { moviesData } from '../../assets/moviesData';
+// import StarRatingComponent from 'react-star-rating-component';
+import StarRating from '../../common/starRating';
 
 
 
-class MovieFilter extends React.Component {
-
+export default class Details extends React.Component {
     state = {
+        bgColor:"none",
+        movieData: [
+            {
+                id: "M1",
+                title: "The Godfather",
+                storyline: "A chilling portrait of the Corleone family's rise and near fall from power in America along with balancing the story of the Sicilian clan's ugly crime business in which they are engaged.",
+                genres: [
+                    "Crime",
+                    "Drama"
+                ],
+                duration: 177,
+                poster_url: "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
+                trailer_url: "https://www.youtube.com/watch/?v=sY1S34973zA",
+                wiki_url: "https://en.wikipedia.org/wiki/The_Godfather",
+                release_date: "1972-03-15T00:00:00+05:30",
+                censor_board_rating: "R",
+                critics_rating: 9.2,
+                status: "PUBLISHED",
+                artists: [
+                    {
+                        "id": "A1",
+                        "first_name": "Marlon",
+                        "last_name": "Brando",
+                        "role_type": "ACTOR",
+                        "profile_description": "Marlon Brando Jr. was an American actor and film director. He is credited with bringing realism to film acting and helping to popularize the Stanislavski system of acting having studied with Stella Adler in the 1940s. Regarded for his cultural influence on 20th century film, Brando's Academy Award-winning performances include that of Terry Malloy in On the Waterfront (1954) and Don Vito Corleone in The Godfather (1972). Brando was an activist for many causes, notably the civil rights movement and various Native American movements.",
+                        "profile_url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Marlon_Brando_1948.jpg",
+                        "wiki_url": "https://en.wikipedia.org/wiki/Marlon_Brando"
+                    },
+                    {
+                        "id": "A2",
+                        "first_name": "Al",
+                        "last_name": "Pacino",
+                        "role_type": "ACTOR",
+                        "profile_description": "Alfredo James Pacino is an American actor and filmmaker. Pacino has had a career spanning over five decades, during which time he has received numerous accolades and honors both competitive and honorary, among them an Academy Award, two Tony Awards, two Primetime Emmy Awards, a British Academy Film Award, four Golden Globe Awards, the Lifetime Achievement Award from the American Film Institute, the Golden Globe Cecil B. DeMille Award, and the National Medal of Arts. He is also one of few performers to have won a competitive Oscar, an Emmy, and a Tony Award for acting, dubbed the 'Triple Crown of Acting'.",
+                        "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Al_Pacino.jpg/220px-Al_Pacino.jpg",
+                        "wiki_url": "https://en.wikipedia.org/wiki/Al_Pacino"
+                    }
+                ]
+            },
+        ],
         moviesData: [
             {
                 id: "M1",
@@ -287,283 +310,77 @@ class MovieFilter extends React.Component {
                     }
                 ]
             }
-        ],
-        genres: [
-            {
-                id: 1,
-                name: "Action"
-            },
-            {
-                id: 2,
-                name: "Sci-Fi"
-            },
-            {
-                id: 3,
-                name: "Drama"
-            },
-            {
-                id: 4,
-                name: "Crime"
-            },
-            {
-                id: 5,
-                name: "Adventure"
-            },
-            {
-                id: 6,
-                name: "Biography"
-            },
-            {
-                id: 7,
-                name: "Horror"
-            },
-            {
-                id: 8,
-                name: "Suspense"
-            }
-        ],
-        artists:[
-            {
-                "id": "A1",
-                "first_name": "Marlon",
-                "last_name": "Brando",
-                "role_type": "ACTOR",
-                "profile_description": "Marlon Brando Jr. was an American actor and film director. He is credited with bringing realism to film acting and helping to popularize the Stanislavski system of acting having studied with Stella Adler in the 1940s. Regarded for his cultural influence on 20th century film, Brando's Academy Award-winning performances include that of Terry Malloy in On the Waterfront (1954) and Don Vito Corleone in The Godfather (1972). Brando was an activist for many causes, notably the civil rights movement and various Native American movements.",
-                "profile_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Marlon_Brando_%28cropped%29.jpg",
-                "wiki_url": "https://en.wikipedia.org/wiki/Marlon_Brando"
-            },
-            {
-                "id": "A2",
-                "first_name": "Al",
-                "last_name": "Pacino",
-                "role_type": "ACTOR",
-                "profile_description": "Alfredo James Pacino is an American actor and filmmaker. Pacino has had a career spanning over five decades, during which time he has received numerous accolades and honors both competitive and honorary, among them an Academy Award, two Tony Awards, two Primetime Emmy Awards, a British Academy Film Award, four Golden Globe Awards, the Lifetime Achievement Award from the American Film Institute, the Golden Globe Cecil B. DeMille Award, and the National Medal of Arts. He is also one of few performers to have won a competitive Oscar, an Emmy, and a Tony Award for acting, dubbed the 'Triple Crown of Acting'.",
-                "wiki_url": "https://en.wikipedia.org/wiki/Pedro_Pascal"
-            },
-            {
-                "id": "A3",
-                "first_name": "Christian",
-                "last_name": "Bale",
-                "role_type": "ACTOR",
-                "profile_description": "Christian Charles Philip Bale is an English actor and producer. He has starred both in blockbuster films and smaller projects from independent producers and art houses. Born in Haverfordwest, Wales, to English parents, he first caught the public eye at the age of 13, when he was cast in the starring role of Steven Spielberg's Empire of the Sun. After a string of semi-successful feature films, he portrayed Wall Street banker and serial killer Patrick Bateman in American Psycho to widespread critical acclaim. His reputation for going great lengths to portray characters in films was first noted in the psychological thriller The Machinist, where he lost 28.5 kg to play the main lead. Within six months he gained 45 kg to star as Batman in Christopher Nolan's Batman Begins",
-                "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Christian_Bale_2014_%28cropped%29.jpg/1024px-Christian_Bale_2014_%28cropped%29.jpg",
-                "wiki_url": "https://en.wikipedia.org/wiki/Christian_Bale"
-            },
-            {
-                "id": "A4",
-                "first_name": "Heath",
-                "last_name": "Ledger",
-                "role_type": "ACTOR",
-                "profile_description": "Heath Andrew Ledger was an Australian actor and director. After performing roles in several Australian television and film productions during the 1990s, Ledger left for the United States in 1998 to further develop his film career. His work comprised nineteen films, including Brokeback Mountain and The Dark Knight. Ledger received numerous posthumous accolades for his critically acclaimed performance in the film The Dark Knight, including the Academy Award for Best Supporting Actor and Best Actor International Award at the 2008 Australian Film Institute Awards",
-                "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Heath_Ledger_%28Berlin_Film_Festival_2006%29_revised.jpg/1024px-Heath_Ledger_%28Berlin_Film_Festival_2006%29_revised.jpg",
-                "wiki_url": "https://en.wikipedia.org/wiki/Heath_Ledger"
-            },
-            {
-                "id": "A5",
-                "first_name": "Leonardo",
-                "last_name": "DiCaprio",
-                "role_type": "ACTOR",
-                "profile_description": "Leonardo Wilhelm DiCaprio is an American actor and film producer. DiCaprio began his career by appearing in television commercials in the late 1980s. He next had recurring roles in various television series, such as the soap opera Santa Barbara and the sitcom Growing Pains. DiCaprio's portrayals of Howard Hughes in The Aviator (2004) and Hugh Glass in The Revenant won him the Golden Globe Award for Best Actor â€“ Motion Picture Drama. His performance as Jordan Belfort in The Wolf of Wall Street won him the Golden Globe award for Best Actor â€“ Motion Picture Musical or Comedy. He also won the Academy Award for Best Actor and BAFTA Award for his performance in The Revenant. DiCaprio is the founder of his own production company, Appian Way Productions.",
-                "profile_url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Leonardo_DiCaprio_visited_Goddard_Saturday_to_discuss_Earth_science_with_Piers_Sellers_%2826105091624%29_cropped.jpg",
-                "wiki_url": "https://en.wikipedia.org/wiki/Leonardo_DiCaprio"
-            },
-            {
-                "id": "A6",
-                "first_name": "Joseph",
-                "last_name": "Gordon-Levitt",
-                "role_type": "ACTOR",
-                "profile_description": "Joseph Leonard Gordon-Levitt is an American actor, filmmaker, singer, and entrepreneur. As a child, Gordon-Levitt appeared in many films and TV series. He took a break from acting to study at Columbia University, but dropped out in 2004 to pursue acting again. He has since starred in  films like (500) Days of Summer, Inception, The Dark Knight Rises, G.I. Joe: The Rise of Cobra and others. For his leading performances in (500) Days of Summer and 50/50, he was nominated for the Golden Globe Award for Best Actor â€“ Motion Picture Musical or Comedy.",
-                "profile_url": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Joseph_Gordon-Levitt_2013.jpg",
-                "wiki_url": "https://en.wikipedia.org/wiki/Joseph_Gordon-Levitt"
-            },
-            {
-                "id": "A7",
-                "first_name": "Matthew",
-                "last_name": "McConaughey",
-                "role_type": "ACTOR",
-                "profile_description": "Matthew David McConaughey is an American actor, producer, model, writer and director. McConaughey achieved ample success in 2013 and 2014. In 2013, McConaughey portrayed Ron Woodroof, a cowboy diagnosed with AIDS in the biographical film Dallas Buyers Club, which earned him the Academy Award, Critics' Choice Movie Award, Golden Globe Award, and Screen Actors Guild Award, all for Best Actor, among other awards and nominations. In 2014, he starred as Rust Cohle in the first season of HBO's crime drama anthology series True Detective, for which he won the Critics' Choice Television Award and TCA Award, and was nominated for the Primetime Emmy Award, Golden Globe Award, and Screen Actors Guild Award.",
-                "profile_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Matthew_McConaughey_-_Goldene_Kamera_2014_-_Berlin.jpg/1024px-Matthew_McConaughey_-_Goldene_Kamera_2014_-_Berlin.jpg",
-                "wiki_url": "https://en.wikipedia.org/wiki/Matthew_McConaughey"
-            },
-            {
-                "id": "A8",
-                "first_name": "Anne",
-                "last_name": "Hathaway",
-                "role_type": "ACTRESS",
-                "profile_description": "Anne Jacqueline Hathaway is an American actress and singer. One of the world's highest-paid actresses in 2015, she has received multiple awards, including an Academy Award, a Golden Globe, a British Academy Film Award, and an Emmy. Her films have earned $6.4 billion worldwide, and she appeared in the Forbes Celebrity 100 in 2009.",
-                "profile_url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Anne_Hathaway_in_2017.png",
-                "wiki_url": "https://en.wikipedia.org/wiki/Anne_Hathaway"
-            },
-            {
-                "id": "A9",
-                "first_name": "Rajkummar",
-                "last_name": "Rao",
-                "role_type": "ACTOR",
-                "profile_description": "Rajkummar Rao, also known as Rajkumar Yadav, is an Indian actor. He has established a career in Hindi cinema and is the recipient of several awards, including a National Film Award, three Filmfare Awards, and an Asia Pacific Screen Award. He is cited in the media as one of the most talented actors of his generation.",
-                "profile_url": "https://en.wikipedia.org/wiki/Rajkummar_Rao#/media/File:Rajkummar_Rao_World_Premiere_Newton_Zoopalast_Berlinale_2017_02.jpg",
-                "wiki_url": "https://en.wikipedia.org/wiki/Rajkummar_Rao"
-            },
-            {
-                "id": "A10",
-                "first_name": "KayKay",
-                "last_name": "Menon",
-                "role_type": "ACTOR",
-                "profile_description": "Kay Kay Menon is an Indian film, stage and television actor who works predominantly in Hindi cinema, and also in Gujarati, Tamil and Telugu cinema. He has also won the award for best actor for the film Shoonya from Festival of Arab and Asian cinema",
-                "profile_url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Kay_Kay_Menon_at_libas_store.jpg",
-                "wiki_url": "https://en.wikipedia.org/wiki/Kay_Kay_Menon"
-            }
-        ],
-        MovieName:'',
-        Genre:'',
-        Artists:''
-      }
+        ]  };
 
-      handleChange0 = (event) => {
-        this.setState({MovieName:event.target.value});
-        console.log(event.target.value);
-        console.log(this.state.MovieName);
-      }
-    
-       handleChange1 = (event) => {
-        // setGenre(event.target.value);
-        this.setState({Genre:event.target.value});
-        // console.log(event.target.value);
-        
-      };
-    
-      // const [Artists, setArtists] = React.useState('');
-    
-       handleChange2 = (event) => {
-        // setArtists(event.target.value);
-        this.setState({Artists:event.target.value});
-      };
-    
-      handleInputChange = () => {
-        //   below one filters with even an empty input tags in other
-          var copyData = moviesData.filter(   (item)=>{if(this.state.MovieName==='' && this.state.Genre==='' && this.state.Artists!=''){return  (item.artists.some(element => {if(element.id===this.state.Artists.id){return true;} return false;}))}
-                                                       else if(this.state.MovieName==='' && this.state.Artists==='' && this.state.Genre!=''){return (item.genres.includes(this.state.Genre))}
-                                                       else if(this.state.MovieName!='' && this.state.Artists==='' && this.state.Genre===''){return (item.title.includes(this.state.MovieName))} 
-                                                       else{return  (item.genres.includes(this.state.Genre) && item.title.includes(this.state.MovieName) && item.artists.some(element => {if(element.id===this.state.Artists.id){return true;} return false;}) )}})
-        this.setState({moviesData:copyData});
-      }
-      hai=(item)=>{
-         sessionStorage.setItem("id", item.id);
-      }
+        componentDidMount(){
+            console.log(sessionStorage.getItem("id"));
+            const copyData=moviesData.filter((item)=>{return item.id===sessionStorage.getItem("id")});
+            console.log(copyData);
+            this.setState({movieData:copyData})
+        }
+
     render() {
         var options = { year: "numeric", month: "long", day: "numeric" }
-
-        return (
-            <div className="flex-container" style={{display:"flex" ,justifyContent:"space-between"}}>
-                <div className="left" >
-                    <ImageList >
-                        <ImageListItem key="Subheader" cols={3} >
+        return <div>
+            <Header extra="true"/>
+            <Typography style={{margin:"6px" , marginLeft:'24px' , height:'24px'}}><a href='/' style={{textDecoration: "none" , color:'black'}}> {"<"} back to home button</a></Typography>
+            <div style={{display:'flex'}}>
+                <div style={{width:'20%'}}>
+                 <img src={this.state.movieData[0].poster_url} style={{marginLeft:"16px"}}></img>  
+                </div>
+                <div style={{width:'60%'}}>
+                  <h2>{this.state.movieData[0].title}</h2>
+                  <b>Genre:</b>
+                  {this.state.movieData[0].genres.map((item)=><span> {item} </span>)}<br></br>
+                  <b>Duration:</b><span> {this.state.movieData[0].duration} min</span><br></br>
+                  <b>Release Date:</b><span> {new Date(this.state.movieData[0].release_date).toLocaleDateString(undefined, options)}</span><br></br>
+                  <b>Rating:</b><span> {this.state.movieData[0].critics_rating}</span><br></br>
+                  <b>Plot:</b><span> {this.state.movieData[0].storyline}</span><br></br>
+                  <b>Trailer:</b>
+                  <iframe src={this.state.movieData[0].trailer_url} style={{width:"95%" , height:"90%"}}></iframe>
+                </div>
+                <div style={{width:'20%'}}>
+                  <b>Rate this movie:</b><br></br>
+                  {/* <svg  onClick={()=>this.setState({bgColor:"yellow"})} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill={this.state.bgColor}/><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>
+                  <svg  onClick={()=>this.setState({bgColor:"yellow"})} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill={this.state.bgColor}/><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>
+                  <svg  onClick={()=>this.setState({bgColor:"yellow"})} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill={this.state.bgColor}/><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>
+                  <svg  onClick={()=>this.setState({bgColor:"yellow"})} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill={this.state.bgColor}/><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>
+                  <svg  onClick={()=>this.setState({bgColor:"yellow"})} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill={this.state.bgColor}/><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>
+                   */}
+                   <StarRating></StarRating>
+                  <br></br>
+                  <b>Artists:</b>
+                  <ImageList >
+                        <ImageListItem key="Subheader" cols={2} >
                             {/* <ListSubheader component="div">December</ListSubheader> */}
                         </ImageListItem>
-                        {this.state.moviesData.map((item) => (
-                            <Link to="/Details" onClick={()=>{this.hai(item)}}>
-                            <ImageListItem key={item.poster_url} style={{ margin: '16px', cursor: 'pointer', width: '250px' }}>
+                        {this.state.movieData[0].artists.map((item) => (
+                            <ImageListItem key={item.poster_url} style={{ margin: '16px', cursor: 'pointer', width: '100px' }}>
                                 <img
-                                    style={{ height: '350px', width: '250px' }}
-                                    src={`${item.poster_url}?w=248&fit=crop&auto=format`}
-                                    srcSet={`${item.poster_url}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                                    alt={item.title}
+                                    style={{ height: '150px', width: '100px' }}
+                                    src={`${item.profile_url}?w=248&fit=crop&auto=format`}
+                                    srcSet={`${item.profile_url}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                                    alt={item.first_name + item.last_name}
                                     loading="lazy"
                                 />
                                 <ImageListItemBar
-                                    style={{ width: '250px' }}
-                                    title={item.title}
-                                    subtitle={new Date(item.release_date).toLocaleDateString(undefined, options)}
+                                    style={{ width: '100px' }}
+                                    title={item.first_name + item.last_name}
+                                    // subtitle={new Date(item.release_date).toLocaleDateString(undefined, options)}
                                     actionIcon={
                                         <IconButton
                                             sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                                            aria-label={`info about ${item.title}`}
+                                            aria-label={`info about ${item.first_name}  ${item.last_name}`}
                                         >
                                             {/* <InfoIcon /> */}
                                         </IconButton>
                                     }
                                 />
                             </ImageListItem>
-                            </Link>
                         ))}
                     </ImageList>
                 </div>
-
-                <div className="filter" >
-                    <Card sx={{ maxWidth: 240 }} style={{ float: 'right', padding: '20px', margin: '16px' }}>
-                        <CardContent>
-                            <Typography sx={{ fontSize: 14 }} variant="h3" color="text.secondary" gutterBottom>
-                                FIND MOVIES BY:
-                            </Typography><br />
-
-                            <FormControl>
-                                <TextField id="standard-basic" label="Movie Name" onBlur={this.handleChange0} variant="standard" />
-                            </FormControl>
-                            <br />
-                            <br />
-
-                            <FormControl fullWidth variant="standard" >
-                                <InputLabel id="demo-simple-select-standard-label" >Genre</InputLabel><br />
-                                <Select
-                                    // multiple={true}
-                                    labelId="demo-simple-select-standard-label"
-                                    id="demo-simple-select-standard"
-                                    value={this.state.Genre}
-                                    label="Genre"
-                                    onChange={this.handleChange1}
-                                    
-                                >
-                                    {this.state.genres.map((item) => (
-                                        <MenuItem value={item.name}  key={item.id}>{item.name}</MenuItem>
-                                    ))}
-
-                                </Select>
-                            </FormControl>
-                            <br />
-                            <br />
-                            <FormControl fullWidth variant="standard" >
-                                <InputLabel id="demo-simple-select-standard-label" >Artists</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-standard-label"
-                                    id="demo-simple-select-standard"
-                                    value={this.state.Artists}
-                                    label="Artists"
-                                    onChange={this.handleChange2}
-                                >
-                                    {this.state.artists.map((item) => (
-                                        <MenuItem value={item} key={item.id}>{item.first_name}  {item.last_name}</MenuItem>
-                                    ))}
-
-                                </Select>
-                            </FormControl>
-                            <br />
-                            <br />
-                            <br />
-                            <FormControl>
-                                <InputLabel shrink={true}>Release Date Start</InputLabel>
-                                <br />
-                                <TextField id="standard-basic" type="date" variant="standard" />
-                            </FormControl>
-
-                            <br />
-                            <br />
-                            <br />
-                            <FormControl>
-                                <InputLabel shrink={true}>Release Date End</InputLabel>
-                                <br />
-                                <TextField id="standard-basic" type="date" variant="standard" />
-                            </FormControl>
-
-                        </CardContent>
-
-                        <CardActions>
-                            {/* <Button variant="contained" onClick={this.props.filter}>Apply</Button> */}
-                            <Button variant="contained" style={{width:"100%"}} onClick={this.handleInputChange}>Apply</Button>
-                        </CardActions>
-                    </Card>
-                </div>
             </div>
-        );
+        </div>;
     }
 }
-
-export default MovieFilter;
