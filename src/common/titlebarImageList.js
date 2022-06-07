@@ -2,9 +2,7 @@ import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-// import ListSubheader from '@mui/material/ListSubheader';
 import IconButton from '@mui/material/IconButton';
-// import InfoIcon from '@mui/icons-material/Info';
 import { moviesData } from '../assets/moviesData';
 
 export default class TitlebarImageList extends React.Component {
@@ -12,7 +10,6 @@ export default class TitlebarImageList extends React.Component {
     return (
       <ImageList sx={{ height: 250 }} style={{ width: '100%' }}>
         <ImageListItem key="Subheader" cols={6} >
-          {/* <ListSubheader component="div">December</ListSubheader> */}
         </ImageListItem>
         {moviesData.map((item) => (
           <ImageListItem key={item.poster_url}>

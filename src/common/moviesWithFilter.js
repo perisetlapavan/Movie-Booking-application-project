@@ -1,14 +1,8 @@
-// import {moviesData} from '../assets/moviesData';
 import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-// import ListSubheader from '@mui/material/ListSubheader';
 import IconButton from '@mui/material/IconButton';
-// import { render } from '@testing-library/react';
-// import InfoIcon from '@mui/icons-material/Info';
-// import * as React from 'react';
-// import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -18,12 +12,8 @@ import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-// import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Select from '@mui/material/Select'; 
-// import { genres } from '../assets/genre';
-// import { artists } from '../assets/artists';
 import { moviesData } from '../assets/moviesData';
-// import Checkbox from '@mui/material/Checkbox';
 import { Link } from 'react-router-dom';
 
 
@@ -425,21 +415,16 @@ class MovieFilter extends React.Component {
       }
     
        handleChange1 = (event) => {
-        // setGenre(event.target.value);
         this.setState({Genre:event.target.value});
-        // console.log(event.target.value);
         
       };
     
-      // const [Artists, setArtists] = React.useState('');
     
        handleChange2 = (event) => {
-        // setArtists(event.target.value);
         this.setState({Artists:event.target.value});
       };
     
       handleInputChange = () => {
-        //   below one filters with even an empty input tags in other
           var copyData = moviesData.filter(   (item)=>{if(this.state.MovieName==='' && this.state.Genre==='' && this.state.Artists!=''){return  (item.artists.some(element => {if(element.id===this.state.Artists.id){return true;} return false;}))}
                                                        else if(this.state.MovieName==='' && this.state.Artists==='' && this.state.Genre!=''){return (item.genres.includes(this.state.Genre))}
                                                        else if(this.state.MovieName!='' && this.state.Artists==='' && this.state.Genre===''){return (item.title.includes(this.state.MovieName))} 

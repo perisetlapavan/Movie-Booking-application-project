@@ -2,8 +2,6 @@
 import React from 'react';
 import Header from '../../common/header/Header';
 import TitlebarImageList from '../../common/titlebarImageList';
-// import ReleasedMovies from '../../common/releasedMovies';
-// import Filter from '../../common/filter';
 import MovieFilter from '../../common/moviesWithFilter';
 
 class Home extends React.Component {
@@ -279,8 +277,6 @@ class Home extends React.Component {
             <Header extra="false" />
             <span style={{display:'block' , backgroundColor:'#ff9999', padding:'8px' ,textAlign:'center' , font:'1 rem'}}>Upcoming Movies</span>
             <TitlebarImageList />
-            {/* <Filter filter={this.filterMovies} onDataChange={this.dataChange} />
-            <ReleasedMovies moviesData={this.state.moviesData} /> */}
             <MovieFilter moviesData={this.state.moviesData}/>
         </div>;
     }
